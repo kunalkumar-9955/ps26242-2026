@@ -1,0 +1,138 @@
+openapi: 3.0.3
+info:
+  title: Skill India Digital Hub (SIDH) & DigiLocker Mock Integration API
+  description: >
+    PROPOSED MOCK CONTRACT ONLY.
+    Simulated API specification for exchanging verifiable vocational skill assessment
+    records between SatyaRPL and the National Skill India Digital Hub repository.
+    NOT connected to live government production systems.
+  version: 1.0.0-mock
+servers:
+  - url: http://localhost:3000/api/mock/sidh
+    description: Local Mock Sandbox Gateway
+paths:
+  /credentials/push:
+    post:
+      summary: Push verifiable credential to SIDH repository (MOCK)
+      operationId: pushCredentialToSidh
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - clientTransactionId
+                - credentialId
+                - qualificationCode
+                - verifiablePayload
+                - signature
+                - keyId
+              properties:
+                clientTransactionId:
+                  type: string
+                  example: tx_2026_001_satyarpl
+                credentialId:
+                  type: string
+                  example: urn:uuid:c1111111-1111-1111-1111-111111111111
+                qualificationCode:
+                  type: string
+                  example: CON/Q0602
+                nqrCode:
+                  type: string
+                  example: QG-03-CO-03951-2025-V2-CSDCI
+                verifiablePayload:
+                  type: object
+                signature:
+                  type: string
+                  example: 6b7c89f0...
+                keyId:
+                  type: string
+                  example: ed25519-key-2026-v1
+      responses:
+        '202':
+          description: Credential accepted for processing in mock sandbox
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ACCEPTED
+                  sidhTrackingId:
+                    type: string
+                    example: sidh_track_9948291
+                  mockNotice:
+                    type: string
+                    example: MOCK CONTRACT - Simulated sandbox acceptance.
+        '400':
+          description: Invalid payload or signature verification failure
+
+  /credentials/verify:
+    get:
+      summary: Public verification check via SIDH gateway (MOCK)
+      operationId: verifySidhCredential
+      parameters:
+        - name: urn
+          in: query
+          required: true
+          schema:
+            type: string
+            example: urn:uuid:c1111111-1111-1111-1111-111111111111
+      responses:
+        '200':
+          description: Verification outcome from mock registry
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  verified:
+                    type: boolean
+                    example: true
+                  status:
+                    type: string
+                    example: VALID
+                  digiLockerUri:
+                    type: string
+                    example: in.gov.msde.satyarpl:c1111111-1111-1111-1111-111111111111
+                  mockNotice:
+                    type: string
+                    example: MOCK CONTRACT - Simulated DigiLocker verification.
+        '404':
+          description: Credential not found in mock registry
+
+  /webhook:
+    post:
+      summary: Inbound status webhook notification from SIDH (MOCK)
+      operationId: sidhStatusWebhook
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                eventId:
+                  type: string
+                credentialId:
+                  type: string
+                eventType:
+                  type: string
+                  enum: [DIGILOCKER_ISSUED, REVOCATION_SYNCED]
+                timestamp:
+                  type: string
+                digiLockerDocId:
+                  type: string
+      responses:
+        '200':
+          description: Webhook received and acknowledged
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

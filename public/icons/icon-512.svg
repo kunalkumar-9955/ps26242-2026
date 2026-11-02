@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg512" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E3A8A" />
+      <stop offset="100%" stop-color="#0F172A" />
+    </linearGradient>
+    <linearGradient id="shield512" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3B82F6" />
+      <stop offset="100%" stop-color="#2563EB" />
+    </linearGradient>
+    <linearGradient id="gold512" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FBBF24" />
+      <stop offset="100%" stop-color="#F59E0B" />
+    </linearGradient>
+  </defs>
+  <!-- Background with rounded corners -->
+  <rect width="512" height="512" rx="96" fill="url(#bg512)"/>
+  
+  <!-- Outer Shield contour -->
+  <path d="M 256 75 L 390 133 C 390 253 333 363 256 416 C 179 363 122 253 122 133 Z" 
+        fill="url(#shield512)" stroke="#60A5FA" stroke-width="10" stroke-linejoin="round"/>
+        
+  <!-- Inner Shield accent -->
+  <path d="M 256 101 L 363 150 C 363 245 317 336 256 379 C 195 336 149 245 149 150 Z" 
+        fill="#1E293B" opacity="0.6"/>
+
+  <!-- Electric Spark / Bolt in Gold -->
+  <path d="M 272 144 L 208 251 L 251 251 L 240 357 L 315 230 L 272 230 Z" 
+        fill="url(#gold512)"/>
+        
+  <!-- Verification check badge -->
+  <circle cx="352" cy="352" r="58" fill="#10B981" stroke="#0F172A" stroke-width="10"/>
+  <path d="M 326 352 L 344 370 L 382 331" fill="none" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

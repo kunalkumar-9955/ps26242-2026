@@ -1,0 +1,43 @@
+{
+  "name": "SatyaRPL — सत्य RPL (Recognition of Prior Learning)",
+  "short_name": "SatyaRPL सत्य RPL",
+  "description": "Fraud-Resistant, Assessor-Auditable RPL Assessment Platform (SIH 2026 · PS 26242 · MSDE)",
+  "start_url": "/worker",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0F172A",
+  "theme_color": "#2563EB",
+  "lang": "hi-IN",
+  "icons": [
+    {
+      "src": "/icons/icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "government", "productivity"],
+  "shortcuts": [
+    {
+      "name": "Worker App / श्रमिक ऐप",
+      "short_name": "Worker",
+      "description": "Voice declaration and evidence capture",
+      "url": "/worker",
+      "icons": [{ "src": "/icons/icon-192.svg", "sizes": "192x192" }]
+    },
+    {
+      "name": "Evidence Capture / साक्ष्य कैप्चर",
+      "short_name": "Capture",
+      "description": "Offline challenge capture",
+      "url": "/worker/capture",
+      "icons": [{ "src": "/icons/icon-192.svg", "sizes": "192x192" }]
+    }
+  ]
+}
